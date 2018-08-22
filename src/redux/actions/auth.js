@@ -1,14 +1,21 @@
 import {
   POST_LOGIN,
   POST_LOGOUT,
-} from '@redux/types'
+  POST_REGISTER
+} from '../types'
+
+export const registerUser = (username, password) => {
+  return (dispatch) => {
+    dispatch({type: POST_REGISTER})
+  }
+};
 export const loginUser = (username, password) => {
   return (dispatch) => {
-    type: POST_LOGIN
+    dispatch({type: POST_LOGIN})
   }
 };
 export const logoutUser = () => {
   return (dispatch) => {
-    type: POST_LOGOUT
+    dispatch({type: POST_LOGOUT})
   }
 };

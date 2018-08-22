@@ -1,24 +1,38 @@
 import {
   POST_LOGIN,
   POST_LOGOUT,
+  POST_REGISTER
 } from 'redux/types'
 
 const defaultState = {
-  authenticated: false
+  currentUser: {
+    isLoggedIn: false
+  }
 };
 
 export default (state = defaultState, action) => {
-
   switch (action.type) {
-
+    case POST_REGISTER:
+      return {
+        ...state,
+        currentUser: {
+          isLoggedIn: true
+        }
+      }
     case POST_LOGIN:
       return {
-        authenticated: true
+        ...state,
+        currentUser: {
+          isLoggedIn: true
+        }
       }
 
     case POST_LOGOUT:
       return {
-        authenticated: false
+        ...state,
+        currentUser: {
+          isLoggedIn: false
+        }
       }
 
     default:

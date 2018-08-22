@@ -405,7 +405,7 @@ class Sidebar extends React.Component {
         <a href="https://www.creative-tim.com" className={logoMini}>
           <img src={logo} alt="logo" className={classes.img} />
         </a>
-        <a href="https://www.creative-tim.com" className={logoNormal}>
+        <a href="/" className={logoNormal}>
           {logoText}
         </a>
       </div>

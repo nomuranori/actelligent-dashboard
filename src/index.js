@@ -16,6 +16,8 @@ import 'ReactotronConfig'
 import indexRoutes from "routes/index.jsx";
 
 import "assets/scss/material-dashboard-pro-react.css?v=1.3.0";
+import Auth from "routes/Auth/Auth";
+import AuthPages from "./layouts/AuthPages";
 
 const hist = createBrowserHistory();
 if (process.env.NODE_ENV) {
@@ -34,9 +36,12 @@ ReactDOM.render(
     <PersistGate persistor={persistor}>
       <Router history={hist}>
         <Switch>
-          {indexRoutes.map((prop, key) => {
-            return <Route path={prop.path} component={prop.component} key={key} />;
-          })}
+          <Route path={'/auth'} component={AuthPages} />;
+          <Auth>
+            {indexRoutes.map((prop, key) => {
+              return <Route path={prop.path} component={prop.component} key={key} />;
+            })}
+          </Auth>
         </Switch>
       </Router>,
     </PersistGate>

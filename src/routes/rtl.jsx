@@ -23,8 +23,8 @@ import UserProfile from "views/Pages/UserProfile.jsx";
 import TimelinePage from "views/Pages/Timeline.jsx";
 import RTLSupport from "views/Pages/RTLSupport.jsx";
 import PricingPage from "views/Pages/PricingPage.jsx";
-import LoginPage from "views/Pages/LoginPage.jsx";
-import RegisterPage from "views/Pages/RegisterPage.jsx";
+import LoginPage from "views/Auth/LoginPage.jsx";
+import RegisterPage from "views/Auth/RegisterPage.jsx";
 import LockScreenPage from "views/Pages/LockScreenPage.jsx";
 
 // @material-ui/icons
