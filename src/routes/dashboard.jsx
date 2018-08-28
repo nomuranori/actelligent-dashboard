@@ -22,6 +22,9 @@ import Widgets from "views/Widgets/Widgets.jsx";
 import UserProfile from "views/Pages/UserProfile.jsx";
 import TimelinePage from "views/Pages/Timeline.jsx";
 import RTLSupport from "views/Pages/RTLSupport.jsx";
+import Event from "views/Events/index.jsx";
+import EditEvent from "views/Events/edit.jsx";
+import RegisteredForEvents from "views/Events/registered.jsx";
 
 import pagesRoutes from "./pages.jsx";
 
@@ -205,9 +208,10 @@ var dashRoutes = [
 // { path: "/charts", name: "Charts", icon: Timeline, component: Charts },
 // { path: "/calendar", name: "Calendar", icon: DateRange, component: Calendar },
 // { redirect: true, path: "/", pathTo: "/dashboard", name: "Dashboard" }
-  { path: "/theme", name: "Theme", icon: WidgetsIcon, component: Calendar },
-  { path: "/event", name: "Event", icon: DateRange, component: Calendar },
-  { path: "/portfolio", name: "Portfolio", icon: AccountCircle, component: Calendar },
-  { redirect: true, path: "/", pathTo: "/dashboard", name: "Dashboard" }
+// { path: "/theme", name: "Broker-Organized Events", icon: WidgetsIcon, component: Calendar },
+// { path: "/portfolio", name: "Portfolio", icon: AccountCircle, component: Calendar },
+  { path: "/event", name: "Broker-Organized Events", icon: DateRange, component: Event },
+  { path: "/event-edit", name: "Edit Event", icon: DateRange, component: EditEvent, hidden: true },
+  { path: "/event-registered", name: "Edit Event", icon: DateRange, component: RegisteredForEvents, hidden: true },
 ];
 export default dashRoutes;

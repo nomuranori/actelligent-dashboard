@@ -3,6 +3,7 @@ import classNames from "classnames";
 import PropTypes from "prop-types";
 // import { Manager, Target, Popper } from "react-popper";
 
+import {connect} from "react-redux";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -15,6 +16,7 @@ import Popper from "@material-ui/core/Popper";
 
 // @material-ui/icons
 import Person from "@material-ui/icons/Person";
+import PowerSettingsNew from "@material-ui/icons/PowerSettingsNew"
 import Notifications from "@material-ui/icons/Notifications";
 import Dashboard from "@material-ui/icons/Dashboard";
 import Search from "@material-ui/icons/Search";
@@ -25,6 +27,7 @@ import Button from "components/CustomButtons/Button.jsx";
 
 import headerLinksStyle from "assets/jss/material-dashboard-pro-react/components/headerLinksStyle";
 
+import { logoutUser } from 'redux/actions/auth';
 class HeaderLinks extends React.Component {
   state = {
     open: false
@@ -35,6 +38,11 @@ class HeaderLinks extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+  
+
+  logout = () => {
+    this.props.logoutUser();
+  }
   render() {
     const { classes, rtlActive } = this.props;
     const { open } = this.state;
@@ -228,6 +236,31 @@ class HeaderLinks extends React.Component {
             </span>
           </Hidden>
         </Button>
+        <Button
+          color="transparent"
+          aria-label="Logout"
+          justIcon
+          onClick={this.logout}
+          className={rtlActive ? classes.buttonLinkRTL : classes.buttonLink}
+          muiClasses={{
+            label: rtlActive ? classes.labelRTL : ""
+          }}
+        >
+          <PowerSettingsNew
+            className={
+              classes.headerLinksSvg +
+              " " +
+              (rtlActive
+                ? classes.links + " " + classes.linksRTL
+                : classes.links)
+            }
+          />
+          <Hidden mdUp implementation="css">
+            <span className={classes.linkText}>
+              {rtlActive ? "الملف الشخصي" : "Logout"}
+            </span>
+          </Hidden>
+        </Button>
       </div>
     );
   }
@@ -237,5 +270,6 @@ HeaderLinks.propTypes = {
   classes: PropTypes.object.isRequired,
   rtlActive: PropTypes.bool
 };
+const mapStateToProps = ({user}) => ({user});
+export default connect(mapStateToProps,{logoutUser})(withStyles(headerLinksStyle)(HeaderLinks));
 
-export default withStyles(headerLinksStyle)(HeaderLinks);

@@ -99,7 +99,7 @@ class RegisterPage extends React.Component {
                               <Face className={classes.inputAdornmentIcon} />
                             </InputAdornment>
                           ),
-                          placeholder: "First Name..."
+                          placeholder: "Your Name..."
                         }}
                       />
                       <CustomInput
@@ -161,13 +161,14 @@ class RegisterPage extends React.Component {
                               }}
                             >
                               {
-                                this.state.roles.map((elem) => {
+                                this.state.roles.map((elem, key) => {
                                   return <MenuItem
                                     classes={{
                                       root: classes.selectMenuItem,
                                       selected: classes.selectMenuItemSelected
                                     }}
                                     value={elem}
+                                    key={key}
                                   >
                                     {elem}
                                   </MenuItem>
@@ -204,6 +205,7 @@ class RegisterPage extends React.Component {
                         <Button onClick={this.registerUser} round color="primary">
                           Get started
                         </Button>
+                        <Button href="/auth/login" simple color="primary">Login</Button>
                       </div>
                 </CardBody>
               </Card>
