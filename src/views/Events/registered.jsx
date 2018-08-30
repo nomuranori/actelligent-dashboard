@@ -89,17 +89,6 @@ class RegisteredForEvents extends React.Component {
                 simple
                 onClick={() => {
                   let obj = this.state.data.find(o => o.id === key);
-                  alert(
-                    "You've clicked EDIT button on \n{ \nName: " +
-                      obj.name +
-                      ", \nposition: " +
-                      obj.position +
-                      ", \noffice: " +
-                      obj.office +
-                      ", \nage: " +
-                      obj.age +
-                      "\n}."
-                  );
                 }}
                 color="warning"
                 className="edit"
@@ -147,9 +136,11 @@ class RegisteredForEvents extends React.Component {
     this.setState({
       alert: (
         <SweetAlert
-          style={{ display: "block",width:"auto",overflow:"scroll", height:"70%", top: "20%", marginTop: 0}}
-          title={null}
+          style={{ display: "block",overflow:"scroll", height:"70%", top: "20%", marginTop: 0}}
+          title={"Event Name"}
           showConfirm={false}
+          onConfirm={() => this.hideAlert()}
+          onCancel={() => this.hideAlert()}
           confirmBtnCssClass={
             this.props.classes.button + " " + this.props.classes.success
           }
@@ -374,10 +365,10 @@ class RegisteredForEvents extends React.Component {
                         selected: rowInfo.index
                       })
                     },
-                    style: {
-                      background: rowInfo.index === this.state.selected ? '#00afec' : 'white',
-                      color: rowInfo.index === this.state.selected ? 'white' : 'black'
-                    }
+                    // style: {
+                    //   background: rowInfo.index === this.state.selected ? '#00afec' : 'white',
+                    //   color: rowInfo.index === this.state.selected ? 'white' : 'black'
+                    // }
                   }
                 }}
                 data={this.state.data}

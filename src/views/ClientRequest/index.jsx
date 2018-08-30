@@ -11,6 +11,7 @@ import Dvr from "@material-ui/icons/Dvr";
 import Reorder from "@material-ui/icons/Reorder";
 import Create from "@material-ui/icons/Create";
 import Close from "@material-ui/icons/Close";
+import Build from "@material-ui/icons/Build";
 import DateRange from "@material-ui/icons/DateRange";
 // core components
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -26,7 +27,7 @@ import Table from "components/Table/Table.jsx";
 
 import styles from "./index.style";
 
-class Events extends React.Component {
+class ClientRequest extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,49 +49,12 @@ class Events extends React.Component {
                   simple
                   onClick={() => {
                     let obj = this.state.data.find(o => o.id === key);
-                    this.props.history.push("/event-registered");
+                    
                   }}
                   color="warning"
-                  className="edit"
+                  className="build"
                 >
-                <Reorder />
-              </Button>{" "}
-              {/* use this button to add a edit kind of action */}
-              <Button
-                justIcon
-                round
-                simple
-                onClick={() => {
-                  let obj = this.state.data.find(o => o.id === key);
-
-                }}
-                color="warning"
-                className="edit"
-              >
-                <Create />
-              </Button>{" "}
-              {/* use this button to remove the data row */}
-              <Button
-                justIcon
-                round
-                simple
-                onClick={() => {
-                  var data = this.state.data;
-                  data.find((o, i) => {
-                    if (o.id === key) {
-                      // here you should add some custom code so you can delete the data
-                      // from this component and from your server as well
-                      data.splice(i, 1);
-                      return true;
-                    }
-                    return false;
-                  });
-                  this.setState({ data: data });
-                }}
-                color="danger"
-                className="remove"
-              >
-                <Close />
+                <Build />
               </Button>{" "}
             </div>
           )
@@ -103,7 +67,7 @@ class Events extends React.Component {
       alert: (
         <SweetAlert
           style={{ display: "block",overflow:"scroll", height:"70%", top: "20%", marginTop: 0}}
-          title={"Event Name"}
+          title={"Fee of requests"}
           showConfirm={false}
           onConfirm={() => this.hideAlert()}
           onCancel={() => this.hideAlert()}
@@ -155,21 +119,7 @@ class Events extends React.Component {
                 "USD 800",
               ]
             },
-            ["Actelligent's Revenue Cut", "USD 200"],,
-            {
-              color: "danger",
-              data: [
-                "Total Broker's Revenue",
-                "USD 4000",
-              ]
-            },,
-            {
-              color: "danger",
-              data: [
-                "Total Actelligent's Revenue",
-                "USD 1000",
-              ]
-            },
+            ["Actelligent's Revenue Cut", "USD 200"],
           ]}
         />
         </SweetAlert>
@@ -196,7 +146,7 @@ class Events extends React.Component {
             </CardHeader>
             <CardBody>
               <div className={classes.right}>
-                <Button href="/event-edit" color="rose">Create</Button>
+                <Button href="/event-edit" color="rose">Fee of Selected</Button>
               </div>
               <Clearfix />
               <ReactTable
@@ -220,7 +170,7 @@ class Events extends React.Component {
                     filterable: false
                   },
                   {
-                    Header: "Event Name",
+                    Header: "Name",
                     accessor: "name"
                   },
                   {
@@ -247,4 +197,4 @@ class Events extends React.Component {
   }
 }
 
-export default withStyles(styles)(Events);
+export default withStyles(styles)(ClientRequest);

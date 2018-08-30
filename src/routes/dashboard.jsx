@@ -26,6 +26,7 @@ import Event from "views/Events/index.jsx";
 import EditEvent from "views/Events/edit.jsx";
 import RegisteredForEvents from "views/Events/registered.jsx";
 
+import ClientRequest from "views/ClientRequest/index.jsx"
 import pagesRoutes from "./pages.jsx";
 
 // @material-ui/icons
@@ -213,5 +214,22 @@ var dashRoutes = [
   { path: "/event", name: "Broker-Organized Events", icon: DateRange, component: Event },
   { path: "/event-edit", name: "Edit Event", icon: DateRange, component: EditEvent, hidden: true },
   { path: "/event-registered", name: "Edit Event", icon: DateRange, component: RegisteredForEvents, hidden: true },
+
+  {
+    collapse: true,
+    path: "/clientrequest",
+    name: "Client Requests",
+    state: "clientrequest",
+    icon: Place,
+    views: [
+      {
+        path: "/clientrequest/index",
+        name: "Requests",
+        mini: "CR",
+        component: ClientRequest
+      },
+    ]
+  },
+  { redirect: true, path: "/", pathTo: "/event", name: "Dashboard" },
 ];
 export default dashRoutes;

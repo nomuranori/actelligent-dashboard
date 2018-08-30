@@ -201,7 +201,6 @@ class EditEvent extends React.Component {
   };
   render() {
     const { classes } = this.props;
-    console.log(classes)
     return (
       <GridContainer>
         <GridItem xs={12} sm={12} md={12}>
@@ -215,7 +214,7 @@ class EditEvent extends React.Component {
             <CardBody>
               <form>
                 <GridContainer>
-                	<GridItem xs={6} sm={12} md={6}>
+                	<GridItem xs={12} sm={12} md={6}>
                     <CustomInput
                       success={this.state.loginEmailState === "success"}
                       error={this.state.loginEmailState === "error"}
@@ -302,6 +301,20 @@ class EditEvent extends React.Component {
                     <CustomInput
                       success={this.state.loginPasswordState === "success"}
                       error={this.state.loginPasswordState === "error"}
+                      labelText="Minimum Expected Fee:"
+                      id="loginpassword"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        onChange: event =>
+                          this.change(event, "loginPassword", "password"),
+                          type: "number"
+                      }}
+                    />
+                    <CustomInput
+                      success={this.state.loginPasswordState === "success"}
+                      error={this.state.loginPasswordState === "error"}
                       labelText="Related Themes"
                       id="loginpassword"
                       formControlProps={{
@@ -314,7 +327,7 @@ class EditEvent extends React.Component {
                       }}
                     />
                 	</GridItem>
-                  <GridItem xs={6} sm={12} md={6}>
+                  <GridItem xs={12} sm={12} md={6}>
                     <div>
                       <InputLabel className={classes.label}>Event Date</InputLabel>
                       <br />
@@ -526,6 +539,20 @@ class EditEvent extends React.Component {
                           Corporate Event
                         </MenuItem>
                       </Select>
+                    </FormControl>
+                    <FormControl
+                        fullWidth
+                        className={classes.selectFormControl}
+                      >
+                      <label
+                        htmlFor="simple-select"
+                        className={classes.selectLabel}
+                      >
+                        Event Description
+                      </label>
+                      <div>
+                        <textarea style={{width:'100%'}} name="message" rows="10" cols="30">Event Description.</textarea>
+                      </div>
                     </FormControl>
                     <GridContainer>
                       <GridItem md={6}>

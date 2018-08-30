@@ -407,12 +407,10 @@ const buttonStyle = {
     }
   },
   justIcon: {
-    paddingLeft: "12px",
-    paddingRight: "12px",
+    padding: "2px",
     fontSize: "20px",
-    height: "41px",
-    minWidth: "41px",
-    width: "41px",
+    height: "auto",
+    width: "auto",
     "& .fab,& .fas,& .far,& .fal,& svg,& .material-icons": {
       marginRight: "0px"
     },
