@@ -41,6 +41,8 @@ import Timeline from "@material-ui/icons/Timeline";
 import DateRange from "@material-ui/icons/DateRange";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
+import ContactMail from "@material-ui/icons/ContactMail";
+
 // var pages = [
 //   {
 //     path: "/timeline-page",
@@ -220,7 +222,7 @@ var dashRoutes = [
     path: "/clientrequest",
     name: "Client Requests",
     state: "clientrequest",
-    icon: Place,
+    icon: ContactMail,
     views: [
       {
         path: "/clientrequest/index",

@@ -1,8 +1,8 @@
 const common_styles = {
-    left: {
+    floatLeft: {
         float: "left!important"
     },
-    right: {
+    floatRight: {
         float: "right!important"
     },
 }
