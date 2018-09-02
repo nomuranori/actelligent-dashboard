@@ -12,8 +12,5 @@ const styles = {
     },
     ...sweetAlertStyle,
     ...regularFormsStyle,
-    cardbody: {
-        background: "aliceblue"
-    }
 };
 export default styles;

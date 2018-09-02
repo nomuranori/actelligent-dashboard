@@ -26,7 +26,13 @@ import Event from "views/Events/index.jsx";
 import EditEvent from "views/Events/edit.jsx";
 import RegisteredForEvents from "views/Events/registered.jsx";
 
+import Recording from "views/RecordAndReport/recording";
+import IndustryReport from "views/RecordAndReport/industry";
+import CompanyReport from "views/RecordAndReport/company";
+
 import ClientRequest from "views/ClientRequest/index.jsx"
+import ProposalForRequest from "views/ClientRequest/proposal.jsx"
+import ClientReply from "views/ClientRequest/reply.jsx"
 import pagesRoutes from "./pages.jsx";
 
 // @material-ui/icons
@@ -40,7 +46,7 @@ import WidgetsIcon from "@material-ui/icons/Widgets";
 import Timeline from "@material-ui/icons/Timeline";
 import DateRange from "@material-ui/icons/DateRange";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-
+import SettingsVoice from "@material-ui/icons/SettingsVoice";
 import ContactMail from "@material-ui/icons/ContactMail";
 
 // var pages = [
@@ -229,6 +235,45 @@ var dashRoutes = [
         name: "Requests",
         mini: "CR",
         component: ClientRequest
+      },
+      {
+        path: "/clientrequest/proposal",
+        name: "Proposals",
+        mini: "PR",
+        component: ProposalForRequest
+      },
+      {
+        path: "/clientrequest/reply",
+        name: "Client Replies",
+        mini: "RP",
+        component: ClientReply
+      },
+    ]
+  },
+  {
+    collapse: true,
+    path: "/recordingandreport",
+    name: "Recordings & Reports",
+    state: "recordingandreport",
+    icon: SettingsVoice,
+    views: [
+      {
+        path: "/recordingandreport/recording",
+        name: "Recordings",
+        mini: "RE",
+        component: Recording
+      },
+      {
+        path: "/recordingandreport/industryreport",
+        name: "Industry Reports",
+        mini: "IR",
+        component: IndustryReport
+      },
+      {
+        path: "/recordingandreport/companyreport",
+        name: "Company Reports",
+        mini: "CR",
+        component: CompanyReport
       },
     ]
   },

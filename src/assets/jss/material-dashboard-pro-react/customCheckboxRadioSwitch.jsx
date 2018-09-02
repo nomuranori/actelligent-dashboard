@@ -55,7 +55,6 @@ const customCheckboxRadioSwitch = {
     lineHeight: "1.428571429",
     fontWeight: "400",
     display: "inline-flex",
-    minWidth: "100px",
     transition: "0.3s ease all"
   },
   labelHorizontal: {

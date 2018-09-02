@@ -13,6 +13,8 @@ import Hidden from "@material-ui/core/Hidden";
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 import Assignment from "@material-ui/icons/Assignment";
+import Attachment from "@material-ui/icons/Attachment";
+import CloudUpload from "@material-ui/icons/CloudUpload";
 import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";
 import Check from "@material-ui/icons/Check";
 import Close from "@material-ui/icons/Close";
@@ -55,7 +57,7 @@ const chance = new Chance();
 
 
 
-class ClientRequest extends React.Component {
+class ProposalForRequest extends React.Component {
   constructor(props) {
     super(props);
 
@@ -85,45 +87,92 @@ class ClientRequest extends React.Component {
      
       return {
         _id: key,
-        clientrequest: key%2==0?"clientrequest1":"clientrequest2",
+        doc:(
+          <div>
+            {key%2==0 && <Button
+              justIcon
+              round
+              simple
+              onClick={() => {
+                alert('Will show excel file or download!')
+              }}
+              color="warning"
+              className="edit"
+            >
+              <Attachment />
+            </Button>
+            }
+            {key%2==1 && <Button
+              justIcon
+              round
+              simple
+              onClick={() => {
+                this.basicAlert();
+              }}
+              color="warning"
+              className="edit"
+            >
+              <CloudUpload />
+            </Button>
+            }
+          </div>
+        ),
+        name: key%2==0?"name1":"name2",
+        company: key%2==0?"Company1":"Company2",
+        fee: key%2==0?"200 USD":"800USD",
         date: (new Date()).toDateString(),
         actions: (
           
           // we've added some custom button actions
           <div className="actions-right">
-            {key%3==0 && <Button
-                        justIcon
-                        onClick={() => {
-                            this.basicEmailAlert()
-                        }}
-                        color="warning"
-                        className="edit"
-                    >
-                    <Build />
-                </Button>
-            }
-            {key%3==1 && <Button
-                        justIcon
-                        onClick={() => {
-                        //this.props.history.push("/event-registered")
-                        }}
-                        color="warning"
-                        className="edit"
-                    >
-                    <AccessTime />
-                </Button>
-            }
-            {key%3==2 && <Button
-                        justIcon
-                        onClick={() => {
-                        //this.props.history.push("/event-registered")
-                        }}
-                        color="warning"
-                        className="edit"
-                    >
-                    <CheckCircleOutline />
-                </Button>
-            }
+            {/* use this button to add a edit kind of action */}
+            <Button
+                justIcon
+                round
+                simple
+                onClick={() => {
+                  //this.props.history.push("/event-registered")
+                }}
+                color="warning"
+                className="edit"
+              >
+              <CheckCircleOutline />
+            </Button>{" "}
+            {/* use this button to add a edit kind of action */}
+            <Button
+              justIcon
+              round
+              simple
+              onClick={() => {
+              }}
+              color="warning"
+              className="edit"
+            >
+              <NotInterested />
+            </Button>{" "}
+            {/* use this button to remove the data row */}
+            <Button
+              justIcon
+              round
+              simple
+              onClick={() => {
+                // var data = this.state.data;
+                // data.find((o, i) => {
+                //   if (o._id === key) {
+                //     // here you should add some custom code so you can delete the data
+                //     // from this component and from your server as well
+                //     data.splice(i, 1);
+                //     return true;
+                //   }
+                //   return false;
+                // });
+                // this.setState({ data: data });
+              }}
+              color="danger"
+              className="remove"
+            >
+              <Close />
+            </Button>{" "}
           </div>
         )
       };
@@ -138,11 +187,27 @@ class ClientRequest extends React.Component {
         filterable: false
       },
       {
-        Header: "Client Request",
-        accessor: "clientrequest",
+        Header: "Attached Doc",
+        accessor: "doc",
+      },
+      {
+        Header: "Name",
+        accessor: "name",
         sortable: true,
         filterable: true,
 
+      },
+      {
+        Header: "Company",
+        accessor: "company",
+        sortable: true,
+        filterable: true,
+      },
+      {
+        Header: "Fee",
+        accessor: "fee",
+        sortable: true,
+        filterable: true,
       },
       {
         Header: "Date",
@@ -151,7 +216,7 @@ class ClientRequest extends React.Component {
         filterable: true,
       },
       {
-        Header: "Actions",
+        Header: "State",
         accessor: "actions",
         sortable: false,
         filterable: false
@@ -233,11 +298,12 @@ class ClientRequest extends React.Component {
   }
 
   basicAlert = () => {
+    const {classes} = this.props;
     this.setState({
       alert: (
         <SweetAlert
           style={{ display: "block",overflow:"scroll", height:"70%", top: "20%", marginTop: 0}}
-          title={"Fees of Selected"}
+          title={"Details of Proposed Arrangement"}
           showConfirm={false}
           onConfirm={() => this.hideAlert()}
           onCancel={() => this.hideAlert()}
@@ -245,53 +311,117 @@ class ClientRequest extends React.Component {
             this.props.classes.button + " " + this.props.classes.success
           }
         >
-        <Table
-          hover
-          tableHead={["Item", "Value"]}
-          className={this.props.classes.modalStyle}
-          tableData={[
-            {
-              color: "success",
-              data: [
-                "Broker's Revenue Cut",
-                "USD 800",
-              ]
-            },
-            ["Actelligent's Revenue Cut", "USD 200"],
-            {
-              color: "success",
-              data: [
-                "Broker's Revenue Cut",
-                "USD 800",
-              ]
-            },
-            ["Actelligent's Revenue Cut", "USD 200"],
-            {
-              color: "success",
-              data: [
-                "Broker's Revenue Cut",
-                "USD 800",
-              ]
-            },
-            ["Actelligent's Revenue Cut", "USD 200"],
-            {
-              color: "success",
-              data: [
-                "Broker's Revenue Cut",
-                "USD 800",
-              ]
-            },
-            ["Actelligent's Revenue Cut", "USD 200"],
-            {
-              color: "success",
-              data: [
-                "Broker's Revenue Cut",
-                "USD 800",
-              ]
-            },
-            ["Actelligent's Revenue Cut", "USD 200"],
-          ]}
-        />
+        <form>
+                <GridContainer>
+                	<GridItem xs={12} sm={12} md={12}>
+                    <CustomInput
+                      labelText="Host"
+                      id="loginemail"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        // onChange: event =>
+                        //   this.change(event, "loginEmail", "email"),
+                        // type: "email"
+                      }}
+                    />
+                    <CustomInput
+                      labelText="Company"
+                      id="loginemail"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        // onChange: event =>
+                        //   this.change(event, "loginEmail", "email"),
+                        // type: "email"
+                      }}
+                    />
+                    <CustomInput
+                      labelText="Date"
+                      id="loginemail"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        // onChange: event =>
+                        //   this.change(event, "loginEmail", "email"),
+                        // type: "email"
+                      }}
+                    />
+                    <CustomInput
+                      labelText="Region"
+                      id="loginemail"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        // onChange: event =>
+                        //   this.change(event, "loginEmail", "email"),
+                        // type: "email"
+                      }}
+                    />
+                    <CustomInput
+                      labelText="Subject"
+                      id="loginemail"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        // onChange: event =>
+                        //   this.change(event, "loginEmail", "email"),
+                        // type: "email"
+                      }}
+                    />
+                    <CustomInput
+                      labelText="Proposed Fee"
+                      id="loginemail"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      inputProps={{
+                        // onChange: event =>
+                        //   this.change(event, "loginEmail", "email"),
+                        // type: "email"
+                      }}
+                    />
+                    <FormLabel>
+                      Do you have excel file to upload?
+                    </FormLabel>
+                    <CustomInput
+                      id="email_adress2"
+                      formControlProps={{
+                        fullWidth: false
+                      }}
+                      inputProps={{
+                        type: "file"
+                      }}
+                    />
+                    <Table
+                      hover
+                      className={this.props.classes.modalStyle}
+                      tableData={[
+                        {
+                          color: "success",
+                          data: [
+                            "Broker's Revenue Cut",
+                            "USD 200",
+                          ]
+                        },
+                        {
+                          color: "success",
+                          data: [
+                            "Actelligent's Revenue Cut",
+                            "USD 800",
+                          ]
+                        },
+                      ]}
+                    />
+                    <Button onClick={()=>this.hideAlert()} color="primary" className={classes.floatRight}>Save</Button>
+                  </GridItem>
+                </GridContainer>
+        </form>
         </SweetAlert>
       )
     });
@@ -307,7 +437,7 @@ class ClientRequest extends React.Component {
     const content = <GridContainer>
     <GridItem xs={12} sm={12} md={6} lg={6}>
       <Card>
-        <CardBody className={classes.cardbody}>
+        <CardBody>
           <h4>SUBJECT & DATE</h4>
           <Table
             tableHeaderColor="primary"
@@ -325,7 +455,7 @@ class ClientRequest extends React.Component {
     </GridItem>
     <GridItem xs={12} sm={12} md={6} lg={6}>
       <Card>
-        <CardBody className={classes.cardbody}>
+        <CardBody>
           <h4>PARTICIPANTS</h4>
           <Table
             tableHeaderColor="primary"
@@ -344,7 +474,7 @@ class ClientRequest extends React.Component {
     </GridItem>
     <GridItem xs={12} sm={12} md={6} lg={6}>
       <Card>
-        <CardBody className={classes.cardbody}>
+        <CardBody>
           <h4>CORPORATE</h4>
           <Table
             tableHeaderColor="primary"
@@ -361,7 +491,7 @@ class ClientRequest extends React.Component {
     </GridItem>
     <GridItem xs={12} sm={12} md={6} lg={6}>
       <Card>
-        <CardBody className={classes.cardbody}>
+        <CardBody>
           <h4>COMPANY PREFERENCE</h4>
           <Table
             tableHeaderColor="primary"
@@ -378,7 +508,7 @@ class ClientRequest extends React.Component {
     </GridItem>
     <GridItem xs={12} sm={12} md={6} lg={6}>
       <Card>
-        <CardBody className={classes.cardbody}>
+        <CardBody>
           <h4></h4>
           <Table
             tableHeaderColor="primary"
@@ -394,7 +524,7 @@ class ClientRequest extends React.Component {
     </GridItem>
     <GridItem xs={12} sm={12} md={6} lg={6}>
       <Card>
-        <CardBody className={classes.cardbody}>
+        <CardBody>
           <h4>ADDITIONAL REQUEST</h4>
           <Table
             tableHeaderColor="primary"
@@ -493,7 +623,7 @@ class ClientRequest extends React.Component {
                     >
                     Email Contents
                 </label>
-                <textarea style={{width:'100%', borderColor: '#d2d2d2'}} name="message" rows="10" cols="30" placeholder="Email Contents."></textarea>
+                <textarea style={{width:'100%'}} name="message" rows="10" cols="30">Email Contents.</textarea>
             </div>
             <Button color="rose" onClick={()=>this.hideEmailAlert()}>Submit</Button>
         </form>
@@ -539,7 +669,7 @@ class ClientRequest extends React.Component {
               <CardIcon color="primary">
                 <DateRange />
               </CardIcon>
-              <h4 className={classes.cardIconTitle}>Clients Requests</h4>
+              <h4 className={classes.cardIconTitle}>Proposed Arrangement</h4>
             </CardHeader>
             <CardBody>
               <GridContainer>
@@ -573,7 +703,7 @@ class ClientRequest extends React.Component {
                     label="All"
                   />
                   <FormControlLabel
-                    control={
+                    control={ 
                       <Radio
                         checked={this.state.selectedValue === "b"}
                         onChange={this.handleChange}
@@ -598,7 +728,7 @@ class ClientRequest extends React.Component {
                     classes={{
                       label: classes.label
                     }}
-                    label="To Process"
+                    label="Follow Up"
                   />
                   <FormControlLabel
                     control={
@@ -626,7 +756,7 @@ class ClientRequest extends React.Component {
                     classes={{
                       label: classes.label
                     }}
-                    label="Processing"
+                    label="Rejected"
                   />
                   <FormControlLabel
                     control={
@@ -654,12 +784,12 @@ class ClientRequest extends React.Component {
                     classes={{
                       label: classes.label
                     }}
-                    label="Processed"
+                    label="Blocked"
                   />
               </GridItem>
             </GridContainer>
               <div className={classes.right}>
-                <Button onClick={this.basicAlert} color="rose">Fees of Selected</Button>
+                <Button color="rose">Notify Actelligent</Button>
               </div>
               <Clearfix />
               <CheckboxTable
@@ -671,17 +801,16 @@ class ClientRequest extends React.Component {
                 showPaginationBottom={false}
                 className="-striped -highlight"
                 {...checkboxProps}
-                getTdProps={(state, rowInfo, column, instance) => {
-                  return {
-                    onClick: (e, handleOriginal) => {   
-                      if (column.Header !="Actions")     
-                        this.basicRequestDetailAlert();
-                      if (handleOriginal) {
-                        handleOriginal();
-                      }
-                    }
-                  };
-                }}
+                // getTdProps={(state, rowInfo, column, instance) => {
+                //   return {
+                //     onClick: (e, handleOriginal) => {              
+                //       this.basicRequestDetailAlert();
+                //       if (handleOriginal) {
+                //         handleOriginal();
+                //       }
+                //     }
+                //   };
+                // }}
               />
             </CardBody>
           </Card>
@@ -691,4 +820,4 @@ class ClientRequest extends React.Component {
   }
 }
 
-export default withStyles(styles)(ClientRequest);
+export default withStyles(styles)(ProposalForRequest);
